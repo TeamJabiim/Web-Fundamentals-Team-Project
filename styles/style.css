@@ -1,0 +1,35 @@
+body {
+  background: url("http://www.1000vectors.com/wp-content/uploads/2013/01/Background-2.jpg") no-repeat center center fixed;
+  background-color: #1FA6E6;
+  background-size: cover; }
+  body #wrapper {
+    height: 500px; }
+    body #wrapper header > div {
+      color: #FFFFFF; }
+      body #wrapper header > div p {
+        font-weight: bold; }
+    body #wrapper header nav {
+      margin-bottom: 0;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0; }
+    body #wrapper #myCarousel {
+      background: url("http://9f1780.medialib.glogster.com/media/c7f85044f2e06e11d682ae4437345736875e8442b3962446103f738d82675ede/100563.jpg"); }
+    body #wrapper .carousel-inner > .item {
+      width: 100%;
+      height: 300px; }
+      body #wrapper .carousel-inner > .item p {
+        color: #FFFFFF;
+        font-size: 2em;
+        font-weight: bold;
+        text-align: center;
+        position: relative;
+        top: 45%; }
+    body #wrapper #main {
+      background: #FFFFFF;
+      height: 100%; }
+      body #wrapper #main h1 {
+        text-align: center; }
+      body #wrapper #main button {
+        margin: 50px 0; }
+
+/*# sourceMappingURL=style.css.map */
