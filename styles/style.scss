@@ -1,6 +1,5 @@
 body {
-    background: url('http://www.1000vectors.com/wp-content/uploads/2013/01/Background-2.jpg') no-repeat center center fixed;
-    background-color: #1FA6E6;
+    background: skyblue url('../images/body-background.jpg') no-repeat;
     background-size: cover;
 
     #wrapper {
@@ -16,6 +15,52 @@ body {
                 }
             }
 
+            #github-fork {
+                position: absolute;
+                top: 0;
+                right: 0;
+                border: 0;
+            }
+
+            #forkongithub {
+
+                a {
+                    background: #007200;
+                    color: #fff;
+                    text-decoration: none;
+                    font-family: arial, sans-serif;
+                    text-align: center;
+                    font-weight: bold;
+                    padding: 5px 40px;
+                    font-size: 1rem;
+                    line-height: 2rem;
+                    position: relative;
+                    transition: 0.5s;
+
+                    &:hover {
+                        background: #c11;
+                        color: #fff;
+                    }
+
+                    &:before, &:after {
+                        content: "";
+                        width: 100%;
+                        display: block;
+                        position: absolute;
+                        top: 1px;
+                        left: 0;
+                        height: 1px;
+                        background: #fff;
+                    }
+
+                    &:after {
+                        bottom: 1px;
+                        top: auto;
+                    }
+                }
+
+            }
+
             nav {
                 margin-bottom: 0;
                 border-bottom-right-radius: 0;
@@ -24,7 +69,7 @@ body {
         }
 
         #myCarousel {
-            background: url('http://9f1780.medialib.glogster.com/media/c7f85044f2e06e11d682ae4437345736875e8442b3962446103f738d82675ede/100563.jpg');
+            background: url('../images/carousel-backgroung.jpg');
         }
 
         .carousel-inner > .item {
@@ -45,7 +90,6 @@ body {
 
         #main {
             background: #FFFFFF;
-            height: 100%;
 
             h1 {
                 text-align: center;
@@ -56,6 +100,15 @@ body {
             }
         }
 
+        footer {
+            p {
+                margin-top: 10px;
+                color: #FFFFFF;
+                font-weight: bold;
+            }
+        }
+
     }
 
 }
+
