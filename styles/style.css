@@ -43,6 +43,51 @@ body {
       margin-bottom: 0;
       border-bottom-right-radius: 0;
       border-bottom-left-radius: 0; }
+      body #wrapper header nav .navbar-toggle {
+        margin-top: 15px;
+        margin-left: 15px;
+        padding: 10px 35px 16px 0px;
+        cursor: pointer;
+        background: none;
+        border: none; }
+        body #wrapper header nav .navbar-toggle .icon-bar {
+          cursor: pointer;
+          border-radius: 1px;
+          height: 1px;
+          width: 30px;
+          background: #888;
+          position: absolute;
+          display: block;
+          content: '';
+          transition: all 0.5s ease-in-out; }
+          body #wrapper header nav .navbar-toggle .icon-bar:before {
+            cursor: pointer;
+            border-radius: 1px;
+            height: 1px;
+            width: 30px;
+            background: #888;
+            position: absolute;
+            display: block;
+            content: '';
+            transition: all 0.5s ease-in-out;
+            top: -10px; }
+          body #wrapper header nav .navbar-toggle .icon-bar:after {
+            cursor: pointer;
+            border-radius: 1px;
+            height: 1px;
+            width: 30px;
+            background: #888;
+            position: absolute;
+            display: block;
+            content: '';
+            transition: all 0.5s ease-in-out; }
+        body #wrapper header nav .navbar-toggle.active .icon-bar {
+          background: transparent; }
+          body #wrapper header nav .navbar-toggle.active .icon-bar:before {
+            transform: rotate(45deg);
+            top: 0; }
+          body #wrapper header nav .navbar-toggle.active .icon-bar:after {
+            transform: rotate(135deg); }
     body #wrapper #myCarousel {
       background: url("../images/carousel-backgroung.jpg"); }
     body #wrapper .carousel-inner > .item {

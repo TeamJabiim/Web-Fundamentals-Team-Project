@@ -1,3 +1,18 @@
+@mixin pseudo-styles {
+    cursor: pointer;
+    border-radius: 1px;
+    height: 1px;
+    width: 30px;
+    background: #888;
+    position: absolute;
+    display: block;
+    content: '';
+}
+
+@mixin transition {
+    transition: all 0.5s ease-in-out;
+}
+
 body {
     background: skyblue url('../images/body-background.jpg') no-repeat;
     background-size: cover;
@@ -65,6 +80,49 @@ body {
                 margin-bottom: 0;
                 border-bottom-right-radius: 0;
                 border-bottom-left-radius: 0;
+
+                .navbar-toggle {
+                    margin-top: 15px;
+                    margin-left: 15px;
+                    padding: 10px 35px 16px 0px;
+                    cursor: pointer;
+                    background: none;
+                    border: none;
+
+                    .icon-bar {
+                        @include pseudo-styles;
+                        @include transition;
+
+                        &:before {
+                            @include pseudo-styles;
+                            @include transition;
+                            top: -10px;
+                        }
+
+                        &:after {
+                            @include pseudo-styles;
+                            @include transition;
+                            //bottom: -10px;
+                        }
+                    }
+
+                    &.active {
+                        .icon-bar {
+                            background: transparent;
+
+                            &:before {
+                                transform: rotate(45deg);
+                                top: 0;
+                            }
+
+                            &:after {
+                                transform: rotate(135deg);
+                                //top: 0;
+                            }
+                        }
+                    }
+
+                }
             }
         }
 
