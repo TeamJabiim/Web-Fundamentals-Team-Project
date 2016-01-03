@@ -3,8 +3,7 @@ var express = require('express'),
     server = require('http').createServer(app),
     io = require('socket.io').listen(server),
     fs = require("fs"),
-    wishes={}
-    clients=[];
+    wishes={};
 
 fs.readFile('data.json', 'utf8', function (err,data) {
     if (err) {
@@ -16,7 +15,7 @@ app.use(express.static('../'));
 server.listen(8888);
 
 io.sockets.on('connection', function(socket){
-    clients[socket.id] = socket;
+
 
 
     socket.on('new wish', function(data){
@@ -27,7 +26,7 @@ io.sockets.on('connection', function(socket){
 
     });
  socket.on('requestWishes', function(){
-     clients[socket.id].emit('retrieveWishes', wishes);
+     socket.emit('retrieveWishes', wishes);
    });
 
 });
