@@ -11,8 +11,8 @@ fs.readFile('data.json', 'utf8', function (err,data) {
     }
     wishes = JSON.parse(data);
 });
-app.use(express.static('../'));
-server.listen(8888);
+app.use(express.static('./'));
+server.listen(80);
 
 io.sockets.on('connection', function(socket){
 
