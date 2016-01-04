@@ -12,7 +12,7 @@ fs.readFile('data.json', 'utf8', function (err,data) {
     wishes = JSON.parse(data);
 });
 app.use(express.static('./'));
-server.listen(80);
+server.listen(8080);
 
 io.sockets.on('connection', function(socket){
 
