@@ -21,13 +21,13 @@ jQuery(function($){
     });
 
     socket.on('update wishes', function(data){
-        var newMsg ="<div class='col-xs-10 col-xs-offset-1'><blockquote><p>"+ data.msg + "</p><small>" + data.nick + "," +  data.time + "</small></blockquote></div>";
+        var newMsg ="<div class='col-xs-8 col-xs-offset-2'><blockquote><p>"+ data.msg + "</p><small>" + data.nick + "," +  data.time + "</small></blockquote></div>";
         $wishBox.append(newMsg);
     });
 
     socket.on('retrieveWishes',function(data){
         data.Messages.forEach(function(item){
-            var newMsg ="<div class='col-xs-10 col-xs-offset-1'><blockquote><p>"+ item.msg + "</p><small>" + item.nick + "," +  item.time + "</small></blockquote></div>";
+            var newMsg ="<div class='col-xs-8 col-xs-offset-2'><blockquote><p>"+ item.msg + "</p><small>" + item.nick + "," +  item.time + "</small></blockquote></div>";
             $wishBox.append(newMsg);
         });
 
