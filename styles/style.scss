@@ -9,15 +9,37 @@
     content: '';
 }
 
+@mixin wishes-gradient {
+    background:
+    linear-gradient(
+        limegreen,
+        transparent
+    ),
+    linear-gradient(
+        90deg,
+        skyblue,
+        transparent
+    ),
+    linear-gradient(
+        -90deg,
+        coral,
+        transparent
+    );
+
+    background-blend-mode: screen;
+}
+
 @mixin transition {
     transition: all 0.5s ease-in-out;
 }
 
 body {
+    font-family: 'Ubuntu';
     background: skyblue url('../images/body-background.jpg') no-repeat;
     background-size: cover;
 
     #wrapper {
+        padding: 0;
         height: 500px;
 
         header {
@@ -35,6 +57,10 @@ body {
                 top: 0;
                 right: 0;
                 border: 0;
+
+                @media screen and(max-width: 768px){
+                    display: none;
+                }
             }
 
             #forkongithub {
@@ -154,7 +180,27 @@ body {
             }
 
             button {
-                margin: 50px 0;
+                margin: 50px auto;
+            }
+
+            #wishTable {
+                div {
+                }
+
+                div:nth-of-type(2n+1){
+                    blockquote {
+                        background: #dde4e9;
+                    }
+                }
+
+                blockquote {
+                    min-height: 100px;
+                    border: 0;
+                    box-shadow: 5px 5px 17px gray;
+                    word-break: break-all;
+                    text-indent: 10px;
+                    @include wishes-gradient;
+                }
             }
         }
 
