@@ -254,6 +254,7 @@ body {
             }
 
             .inactive-member {
+
                 .overlay {
                     width: 100%;
                     height: 0;
@@ -299,10 +300,26 @@ body {
         }
 
         footer {
+            background: #222222;
+            opacity: 0.8;
+
             p {
                 margin-top: 10px;
                 color: #FFFFFF;
-                font-weight: bold;
+            }
+
+            span {
+                color: #FFFFFF;
+            }
+
+            a {
+                margin-left: 20px;
+            }
+
+            .friends {
+                margin-top: 10px;
+                text-align: right;
+
             }
         }
 
