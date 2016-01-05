@@ -11,7 +11,12 @@ fs.readFile('data.json', 'utf8', function (err,data) {
     }
     wishes = JSON.parse(data);
 });
-app.use(express.static('./'));
+
+app.use("/",express.static(__dirname + "/public"));
+app.use("/jokes",express.static(__dirname + "/public/jokes.html"));
+app.use("/about",express.static(__dirname + "/public/about.html"));
+
+
 server.listen(8080);
 
 io.sockets.on('connection', function(socket){
