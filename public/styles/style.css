@@ -6,8 +6,7 @@ body {
     margin-left: 0;
     margin-right: 0; }
   body #wrapper {
-    padding: 0;
-    height: 500px; }
+    padding: 0; }
     body #wrapper header > div {
       color: #FFFFFF; }
       body #wrapper header > div p {
@@ -98,10 +97,13 @@ body {
             transform: rotate(135deg); }
     body #wrapper #myCarousel {
       background: url("../images/carousel-backgroung.jpg"); }
-    body #wrapper .carousel-inner > .item {
+    body #wrapper .carousel-inner .item {
       width: 100%;
-      height: 300px; }
-      body #wrapper .carousel-inner > .item p {
+      height: 400px; }
+      body #wrapper .carousel-inner .item img {
+        width: 100%;
+        min-height: 400px; }
+      body #wrapper .carousel-inner .item p {
         color: #FFFFFF;
         font-size: 2em;
         font-weight: bold;

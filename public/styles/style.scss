@@ -45,9 +45,6 @@ body {
 
     #wrapper {
         padding: 0;
-        height: 500px;
-
-
 
         header {
 
@@ -163,20 +160,26 @@ body {
             background: url('../images/carousel-backgroung.jpg');
         }
 
-        .carousel-inner > .item {
+        .carousel-inner {
+            .item {
+                width: 100%;
+                height: 400px;
 
-            width: 100%;
-            height: 300px;
+                img {
+                    width: 100%;
+                    min-height: 400px;
+                }
 
-            p {
-                color: #FFFFFF;
-                font-size: 2em;
-                font-weight: bold;
-                text-align: center;
-                position: relative;
-                top: 45%;
+                p {
+                    color: #FFFFFF;
+                    font-size: 2em;
+                    font-weight: bold;
+                    text-align: center;
+                    position: relative;
+                    top: 45%;
+                }
+
             }
-
         }
 
         #main {
