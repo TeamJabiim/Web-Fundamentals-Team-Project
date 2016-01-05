@@ -2,6 +2,9 @@ body {
   font-family: 'Ubuntu';
   background: skyblue url("../images/body-background.jpg") no-repeat;
   background-size: cover; }
+  body .row {
+    margin-left: 0;
+    margin-right: 0; }
   body #wrapper {
     padding: 0;
     height: 500px; }

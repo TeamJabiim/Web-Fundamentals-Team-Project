@@ -12,18 +12,18 @@
 @mixin wishes-gradient {
     background:
     linear-gradient(
-        limegreen,
-        transparent
+    limegreen,
+    transparent
     ),
     linear-gradient(
-        90deg,
-        skyblue,
-        transparent
+    90deg,
+    skyblue,
+    transparent
     ),
     linear-gradient(
-        -90deg,
-        coral,
-        transparent
+    -90deg,
+    coral,
+    transparent
     );
 
     background-blend-mode: screen;
@@ -38,9 +38,16 @@ body {
     background: skyblue url('../images/body-background.jpg') no-repeat;
     background-size: cover;
 
+    .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
     #wrapper {
         padding: 0;
         height: 500px;
+
+
 
         header {
 
@@ -173,6 +180,8 @@ body {
         }
 
         #main {
+
+
             background: #FFFFFF;
 
             h1 {
