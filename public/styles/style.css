@@ -5,6 +5,16 @@ body {
   body .row {
     margin-left: 0;
     margin-right: 0; }
+  body .jokes-row .col-md-3{
+    padding-top: 15px;
+    height: 200px;
+    overflow-y: auto;
+    border-top: 3px double #000;
+    border-left: 3px double #000;
+    border-right: 3px double #000;
+    
+    margin-bottom: 1px;
+  }
   body #wrapper {
     padding: 0;
     height: 500px; }
