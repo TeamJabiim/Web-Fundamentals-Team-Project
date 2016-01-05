@@ -5,6 +5,12 @@ body {
   body .row {
     margin-left: 0;
     margin-right: 0; }
+  body .jokes-row .col-md-3{
+    padding-top: 10px;
+  }
+body .jokes-row .col-md-3 p {
+  font-size: 17.5px;
+}
   body #wrapper {
     padding: 0;
     height: 500px; }
@@ -128,5 +134,5 @@ body {
       margin-top: 10px;
       color: #FFFFFF;
       font-weight: bold; }
-
+     
 /*# sourceMappingURL=style.css.map */
