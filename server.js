@@ -9,7 +9,11 @@ fs.readFile('data.json', 'utf8', function (err,data) {
     if (err) {
         return console.log(err);
     }
+    try{
     wishes = JSON.parse(data);
+    } catch(err){
+        console.log(err + "\n" + data);
+    }
 });
 
 app.use("/",express.static(__dirname + "/public"));

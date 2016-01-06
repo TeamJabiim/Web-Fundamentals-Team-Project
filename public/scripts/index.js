@@ -6,13 +6,46 @@ jQuery(function($){
     var $messageForm = $('#send-message');
     var $senderName = $("#name");
     var $wishBox = $('#wishTable');
-    var $wish = $("#wish");
+    var $wish = $("#wishText");
     var mS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 
     socket.emit('requestWishes');
 
-    $messageForm.submit(function(e){
 
+    var nameCheck = false;
+    var wishCheck = false;
+
+    $senderName.keyup(function(){
+       if($(this).val().trim() != ''){
+           nameCheck=true;
+           $(this).closest(".form-group").removeClass("has-error").addClass("has-success");
+       }else{
+           nameCheck=false;
+           $(this).closest(".form-group").removeClass("has-success").addClass("has-error");
+       }
+        unlockButton();
+    });
+    $wish.keyup(function(){
+        if($(this).val().trim() != ''){
+            wishCheck=true;
+            $(this).closest(".form-group").removeClass("has-error").addClass("has-success");
+        }else{
+            wishCheck=false;
+            $(this).closest(".form-group").removeClass("has-success").addClass("has-error");
+        }
+        unlockButton();
+    });
+
+function unlockButton(){
+    if(nameCheck && wishCheck){
+    $("#wishButton").removeAttr("disabled");
+    }else{
+    $("#wishButton").attr("disabled",true);
+    }
+
+}
+
+    $messageForm.submit(function(e){
         var today = new Date();
         var time = [ today.getDate(), mS[today.getMonth()],today.getFullYear()];
         socket.emit('new wish', [$senderName.val(), $wish.val() , time] );
