@@ -16,10 +16,11 @@ fs.readFile('data.json', 'utf8', function (err,data) {
     }
 });
 
-app.use("/",express.static(__dirname + "/public"));
-app.use("/jokes",express.static(__dirname + "/public/jokes.html"));
-app.use("/about",express.static(__dirname + "/public/about.html"));
+var index = fs.readFileSync(__dirname + "/public/partials/index_partial.html", 'utf8');
+var about = fs.readFileSync(__dirname + "/public/partials/about_partial.html", 'utf8');
+var jokes = fs.readFileSync(__dirname + "/public/partials/jokes_partial.html", 'utf8');
 
+app.use(express.static(__dirname + "/public"));
 
 server.listen(8080);
 
@@ -37,5 +38,24 @@ io.sockets.on('connection', function(socket){
  socket.on('requestWishes', function(){
      socket.emit('retrieveWishes', wishes);
    });
+
+ socket.on("requestContent",function(data){
+    
+if(data == "index"){
+    
+    socket.emit("retrieveContent",index); 
+
+}else if(data == "about"){
+     socket.emit("retrieveContent",about);
+
+}else if(data == "jokes"){
+     socket.emit("retrieveContent",jokes);
+}
+
+
+
+ });
+
+
 
 });
