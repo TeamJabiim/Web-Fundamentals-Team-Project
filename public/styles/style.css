@@ -23,8 +23,7 @@ body {
     overflow-y: auto;
   }
   body #wrapper {
-    padding: 0;
-    height: 500px; }
+    padding: 0; }
     body #wrapper header > div {
       color: #FFFFFF; }
       body #wrapper header > div p {
@@ -114,11 +113,19 @@ body {
           body #wrapper header nav .navbar-toggle.active .icon-bar:after {
             transform: rotate(135deg); }
     body #wrapper #myCarousel {
+<<<<<<< HEAD
       background-size:cover ; }
     body #wrapper .carousel-inner > .item {
+=======
+      background: url("../images/carousel-backgroung.jpg"); }
+    body #wrapper .carousel-inner .item {
+>>>>>>> e92168433b81224dbe34e0c87d435e686a24b2cf
       width: 100%;
-      height: 300px; }
-      body #wrapper .carousel-inner > .item p {
+      height: 400px; }
+      body #wrapper .carousel-inner .item img {
+        width: 100%;
+        min-height: 400px; }
+      body #wrapper .carousel-inner .item p {
         color: #FFFFFF;
         font-size: 2em;
         font-weight: bold;
