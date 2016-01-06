@@ -33,9 +33,14 @@
     transition: all 0.5s ease-in-out;
 }
 
+@font-face {
+    font-family: XmasFont_1;
+    src: url("../other_res/fonts/JaspersHandwriting.ttf");
+}
+
 body {
     font-family: 'Ubuntu';
-    background: skyblue url('../images/body-background.jpg') no-repeat;
+    background: skyblue url("../images/bluebg.jpg") no-repeat;
     background-size: cover;
 
     .row {
@@ -47,9 +52,20 @@ body {
         padding: 0;
 
         header {
+            margin-top: 15px;
 
-            > div {
+            .logo {
                 color: #FFFFFF;
+                display: inline-block;
+                vertical-align: middle;
+                @media only screen and (max-width: 768px){
+                    display: none;
+                }
+
+                a {
+                    text-decoration: none;
+                    color: #FFFFFF;
+                }
 
                 p {
                     font-weight: bold;
@@ -107,7 +123,7 @@ body {
             }
 
             nav {
-                margin-bottom: 0;
+                margin: 10px 0 0 0;
                 border-bottom-right-radius: 0;
                 border-bottom-left-radius: 0;
 
@@ -157,7 +173,7 @@ body {
         }
 
         #myCarousel {
-            background: url('../images/carousel-backgroung.jpg');
+            background-size: cover;
         }
 
         .carousel-inner {
@@ -172,6 +188,7 @@ body {
 
                 p {
                     color: #FFFFFF;
+                    font-family: XmasFont_1;
                     font-size: 2em;
                     font-weight: bold;
                     text-align: center;
@@ -199,6 +216,8 @@ body {
             }
 
             #wishTable {
+                height: 560px;
+                overflow-y: auto;
                 div {
                 }
 
