@@ -3,19 +3,50 @@
  */
 jQuery(function($){
     var socket = io.connect();
-    var $messageForm = $('#send-message');
-    var $senderName = $("#name");
-    var $wishBox = $('#wishTable');
-    var $wish = $("#wishText");
+
     var mS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
-
-    socket.emit('requestWishes');
-
-
+    var target;
+    var currentTarget;
     var nameCheck = false;
     var wishCheck = false;
 
-    $senderName.keyup(function(){
+
+    setInterval(function(){
+    
+    var pathname = document.URL;
+    if (pathname.indexOf("#") > -1) {
+     target = pathname.substr(pathname.indexOf("#")+1,pathname.length);
+    }else{
+      target = "index"    
+        }
+
+    if(target !=currentTarget){
+        socket.emit("requestContent",target);
+        currentTarget = target; 
+        }
+
+
+},60);
+
+
+socket.on("retrieveContent",function(data){
+$("#content").empty();
+$("#content").append(data);
+if(currentTarget == "index"){
+    socket.emit('requestWishes'); 
+    
+}
+
+
+
+});
+
+
+
+
+
+
+    $("#name").keyup(function(){
        if($(this).val().trim() != ''){
            nameCheck=true;
            $(this).closest(".form-group").removeClass("has-error").addClass("has-success");
@@ -25,7 +56,7 @@ jQuery(function($){
        }
         unlockButton();
     });
-    $wish.keyup(function(){
+    $("#wishText").keyup(function(){
         if($(this).val().trim() != ''){
             wishCheck=true;
             $(this).closest(".form-group").removeClass("has-error").addClass("has-success");
@@ -45,12 +76,12 @@ function unlockButton(){
 
 }
 
-    $messageForm.submit(function(e){
+    $('#send-message').submit(function(e){
         var today = new Date();
         var time = [ today.getDate(), mS[today.getMonth()],today.getFullYear()];
-        socket.emit('new wish', [$senderName.val(), $wish.val() , time] );
-        $wish.val('');
-        $senderName.val('');
+        socket.emit('new wish', [$("#name").val(), $("#wishText").val() , time] );
+        $("#wishText").val('');
+        $("#name").val('');
     });
 
     socket.on('update wishes', function(data){
@@ -59,17 +90,18 @@ function unlockButton(){
 
         var newMsg ="<div class='col-xs-10 col-xs-offset-1 wishItem'><blockquote><p>"+ data.msg + "</p><small> " + data.nick + ", " +  data.time + "</small></blockquote></div>";
 
-        $wishBox.append(newMsg);
+        $('#wishTable').append(newMsg);
     });
 
     socket.on('retrieveWishes',function(data){
+
         data.Messages.forEach(function(item){
 
             var newMsg ="<div class='col-xs-10 col-xs-offset-1 wishItem'><blockquote><p>"+ item.msg + "</p><small>" + item.nick + "," +  item.time + "</small></blockquote></div>";
 
             var newMsg ="<div class='col-xs-10 col-xs-offset-1 wishItem'><blockquote><p>"+ item.msg + "</p><small> " + item.nick + ", " +  item.time + "</small></blockquote></div>";
 
-            $wishBox.append(newMsg);
+            $('#wishTable').append(newMsg);
         });
 
     });
@@ -77,4 +109,6 @@ function unlockButton(){
 
 
 });
+
+
 
