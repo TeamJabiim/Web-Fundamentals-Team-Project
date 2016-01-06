@@ -3,14 +3,11 @@
  */
 jQuery(function ($) {
     var socket = io.connect();
-
     var mS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
     var target;
     var currentTarget;
-    var nameCheck = false;
-    var wishCheck = false;
-
-
+    var nameCheck;
+    var wishCheck;
     setInterval(function () {
 
         var pathname = document.URL;
@@ -24,52 +21,71 @@ jQuery(function ($) {
             socket.emit("requestContent", target);
             currentTarget = target;
         }
-
-
     }, 60);
 
 
-    $("#navbar li").click(function(){
+    $("#navbar li").click(function () {
 
-       $(this).siblings().removeClass("active");
-       $(this).addClass("active");
+        $(this).siblings().removeClass("active");
+        $(this).addClass("active");
 
     });
 
 
+    setTimeout(function(){
+    $("#wishButton").click(function () {
 
-
-
-    $("#name").keyup(function () {
-        if ($(this).val().trim() != '') {
-            nameCheck = true;
-            $(this).closest(".form-group").removeClass("has-error").addClass("has-success");
-        } else {
-            nameCheck = false;
-            $(this).closest(".form-group").removeClass("has-success").addClass("has-error");
-        }
-        unlockButton();
-    });
-    $("#wishText").keyup(function () {
-        if ($(this).val().trim() != '') {
-            wishCheck = true;
-            $(this).closest(".form-group").removeClass("has-error").addClass("has-success");
-        } else {
-            wishCheck = false;
-            $(this).closest(".form-group").removeClass("has-success").addClass("has-error");
-        }
-        unlockButton();
-    });
-
-
-
-    $('#send-message').submit(function (e) {
         var today = new Date();
         var time = [today.getDate(), mS[today.getMonth()], today.getFullYear()];
         socket.emit('new wish', [$("#name").val(), $("#wishText").val(), time]);
         $("#wishText").val('');
         $("#name").val('');
+        $("#close-btn").click();
+        $("#name").keyup();
+        $("#wishText").keyup();
+
     });
+
+
+        $("#name").keyup(function(){
+            if($(this).val().trim() != ''){
+                nameCheck=true;
+                $(this).closest(".form-group").removeClass("has-error").addClass("has-success");
+            }else{
+                nameCheck=false;
+                $(this).closest(".form-group").removeClass("has-success").addClass("has-error");
+            }
+            unlockButton();
+        });
+        $("#wishText").keyup(function(){
+            if($(this).val().trim() != ''){
+                wishCheck=true;
+                $(this).closest(".form-group").removeClass("has-error").addClass("has-success");
+            }else{
+                wishCheck=false;
+                $(this).closest(".form-group").removeClass("has-success").addClass("has-error");
+            }
+            unlockButton();
+        });
+},1000);
+
+
+
+    function unlockButton(){
+        if(nameCheck && wishCheck){
+            $("#wishButton").removeAttr("disabled");
+        }else{
+            $("#wishButton").attr("disabled",true);
+        }
+
+    }
+
+
+
+
+
+
+
 
     socket.on('update wishes', function (data) {
 
@@ -110,13 +126,5 @@ jQuery(function ($) {
 
 
 
-function unlockButton() {
-    if (nameCheck && wishCheck) {
-        $("#wishButton").removeAttr("disabled");
-    } else {
-        $("#wishButton").attr("disabled", true);
-    }
-
-}
 
 

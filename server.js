@@ -28,6 +28,7 @@ io.sockets.on('connection', function (socket) {
 
 
     socket.on('new wish', function (data) {
+
         var obj = {msg: data[1], nick: data[0], time: data[2]};
         io.sockets.emit('update wishes', obj);
         wishes.Messages.push(obj);
