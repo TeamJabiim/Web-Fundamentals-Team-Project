@@ -131,6 +131,10 @@ body {
         text-align: center; }
       body #wrapper #main .heading-about {
         margin-bottom: 100px; }
+        body #wrapper #main .heading-about small {
+          display: block;
+          margin-top: 15px;
+          font-size: 0.5em; }
       body #wrapper #main #wish {
         margin: 50px auto; }
       body #wrapper #main #wishTable {
