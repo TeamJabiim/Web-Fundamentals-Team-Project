@@ -24,6 +24,52 @@ jQuery(function ($) {
     }, 60);
 
 
+    function delayedItems() {
+
+        setTimeout(function () {
+            $("#wishButton").click(function () {
+
+                var today = new Date();
+                var time = [today.getDate(), mS[today.getMonth()], today.getFullYear()];
+                socket.emit('new wish', [$("#name").val(), $("#wishText").val(), time]);
+                $("#wishText").val('');
+                $("#name").val('');
+                $("#close-btn").click();
+                $("#name").keyup();
+                $("#wishText").keyup();
+
+            });
+            $("#close-btn").click(function () {
+                $("#wishText").val('');
+                $("#name").val('');
+                $("#name").keyup();
+                $("#wishText").keyup();
+            });
+
+            $("#name").keyup(function () {
+                if ($(this).val().trim() != '') {
+                    nameCheck = true;
+                    $(this).closest(".form-group").removeClass("has-error").addClass("has-success");
+                } else {
+                    nameCheck = false;
+                    $(this).closest(".form-group").removeClass("has-success").addClass("has-error");
+                }
+                unlockButton();
+            });
+            $("#wishText").keyup(function () {
+                if ($(this).val().trim() != '') {
+                    wishCheck = true;
+                    $(this).closest(".form-group").removeClass("has-error").addClass("has-success");
+                } else {
+                    wishCheck = false;
+                    $(this).closest(".form-group").removeClass("has-success").addClass("has-error");
+                }
+                unlockButton();
+            });
+        }, 1000);
+
+    }
+
     $("#navbar li").click(function () {
 
         $(this).siblings().removeClass("active");
@@ -31,60 +77,14 @@ jQuery(function ($) {
 
     });
 
-
-    setTimeout(function(){
-    $("#wishButton").click(function () {
-
-        var today = new Date();
-        var time = [today.getDate(), mS[today.getMonth()], today.getFullYear()];
-        socket.emit('new wish', [$("#name").val(), $("#wishText").val(), time]);
-        $("#wishText").val('');
-        $("#name").val('');
-        $("#close-btn").click();
-        $("#name").keyup();
-        $("#wishText").keyup();
-
-    });
-
-
-        $("#name").keyup(function(){
-            if($(this).val().trim() != ''){
-                nameCheck=true;
-                $(this).closest(".form-group").removeClass("has-error").addClass("has-success");
-            }else{
-                nameCheck=false;
-                $(this).closest(".form-group").removeClass("has-success").addClass("has-error");
-            }
-            unlockButton();
-        });
-        $("#wishText").keyup(function(){
-            if($(this).val().trim() != ''){
-                wishCheck=true;
-                $(this).closest(".form-group").removeClass("has-error").addClass("has-success");
-            }else{
-                wishCheck=false;
-                $(this).closest(".form-group").removeClass("has-success").addClass("has-error");
-            }
-            unlockButton();
-        });
-},1000);
-
-
-
-    function unlockButton(){
-        if(nameCheck && wishCheck){
+    function unlockButton() {
+        if (nameCheck && wishCheck) {
             $("#wishButton").removeAttr("disabled");
-        }else{
-            $("#wishButton").attr("disabled",true);
+        } else {
+            $("#wishButton").attr("disabled", true);
         }
 
     }
-
-
-
-
-
-
 
 
     socket.on('update wishes', function (data) {
@@ -101,6 +101,7 @@ jQuery(function ($) {
         $("#content").append(data);
         if (currentTarget == "index") {
             socket.emit('requestWishes');
+            delayedItems();
 
         }
 
