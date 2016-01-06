@@ -21,6 +21,9 @@ body {
         @media only screen and (max-width: 768px) {
           body #wrapper header > div {
             padding-bottom: 0; } }
+        body #wrapper header > div img {
+          width: 7%;
+          height: 7%; }
         body #wrapper header > div a {
           text-decoration: none;
           color: #FFFFFF; }
@@ -228,6 +231,8 @@ body {
             position: absolute;
             overflow: hidden;
             width: 100%; }
+            body #wrapper #main .card-container .card .side .lslavov {
+              width: 200px; }
           body #wrapper #main .card-container .card .back {
             background: #eaeaed;
             color: #0087cc;

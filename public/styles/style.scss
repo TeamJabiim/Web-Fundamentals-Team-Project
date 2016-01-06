@@ -71,6 +71,11 @@ body {
                     padding-bottom: 0;
                 }
 
+                img {
+                    width: 7%;
+                    height: 7%;
+                }
+
                 a {
                     text-decoration: none;
                     color: #FFFFFF;
@@ -338,6 +343,10 @@ body {
                         position: absolute;
                         overflow: hidden;
                         width: 100%;
+
+                        .lslavov {
+                            width: 200px;
+                        }
                     }
 
                     .back {
