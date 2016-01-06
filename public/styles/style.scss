@@ -60,6 +60,28 @@ body {
 
         header {
             margin-top: 15px;
+            @media only screen and(max-width: 768px){
+                margin-top: 0;
+                background-color: #f8f8f8;
+            }
+
+            > div {
+                padding-bottom: 10px;
+                @media only screen and(max-width: 768px){
+                    padding-bottom: 0;
+                }
+
+                a {
+                    text-decoration: none;
+                    color: #FFFFFF;
+                }
+            }
+
+            img {
+                @media only screen and(max-width: 768px){
+                    margin-left: 15px;
+                }
+            }
 
             .logo {
                 color: #FFFFFF;
@@ -69,10 +91,6 @@ body {
                     display: none;
                 }
 
-                a {
-                    text-decoration: none;
-                    color: #FFFFFF;
-                }
 
                 p {
                     font-weight: bold;
@@ -130,9 +148,12 @@ body {
             }
 
             nav {
-                margin: 10px 0 0 0;
+                margin: 0;
                 border-bottom-right-radius: 0;
                 border-bottom-left-radius: 0;
+                @media only screen and(max-width: 768px){
+                    border-top: 0;
+                }
 
                 .navbar-toggle {
                     margin-top: 15px;

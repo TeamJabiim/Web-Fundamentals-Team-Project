@@ -12,6 +12,21 @@ body {
     padding: 0; }
     body #wrapper header {
       margin-top: 15px; }
+      @media only screen and (max-width: 768px) {
+        body #wrapper header {
+          margin-top: 0;
+          background-color: #f8f8f8; } }
+      body #wrapper header > div {
+        padding-bottom: 10px; }
+        @media only screen and (max-width: 768px) {
+          body #wrapper header > div {
+            padding-bottom: 0; } }
+        body #wrapper header > div a {
+          text-decoration: none;
+          color: #FFFFFF; }
+      @media only screen and (max-width: 768px) {
+        body #wrapper header img {
+          margin-left: 15px; } }
       body #wrapper header .logo {
         color: #FFFFFF;
         display: inline-block;
@@ -19,9 +34,6 @@ body {
         @media only screen and (max-width: 768px) {
           body #wrapper header .logo {
             display: none; } }
-        body #wrapper header .logo a {
-          text-decoration: none;
-          color: #FFFFFF; }
         body #wrapper header .logo p {
           font-weight: bold; }
       body #wrapper header #github-fork {
@@ -60,9 +72,12 @@ body {
           bottom: 1px;
           top: auto; }
       body #wrapper header nav {
-        margin: 10px 0 0 0;
+        margin: 0;
         border-bottom-right-radius: 0;
         border-bottom-left-radius: 0; }
+        @media only screen and (max-width: 768px) {
+          body #wrapper header nav {
+            border-top: 0; } }
         body #wrapper header nav .navbar-toggle {
           margin-top: 15px;
           margin-left: 15px;
