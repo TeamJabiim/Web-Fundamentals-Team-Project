@@ -1,13 +1,12 @@
-/**
- * Created by Lyubomir on 28/09/2015.
- */
 jQuery(function ($) {
     var socket = io.connect();
     var mS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
     var target;
     var currentTarget;
-    var nameCheck;
-    var wishCheck;
+    var nameCheck = false;
+    var wishCheck = false;
+
+
     setInterval(function () {
 
         var pathname = document.URL;
@@ -23,6 +22,34 @@ jQuery(function ($) {
         }
     }, 60);
 
+    $("#navbar li").click(function () {
+
+        $(this).siblings().removeClass("active");
+        $(this).addClass("active");
+
+    });
+
+    socket.on("retrieveContent", function (data) {
+        $("#content").empty();
+        $("#content").append(data);
+        if (currentTarget == "index") {
+            socket.emit('requestWishes');
+            delayedItems();
+        }
+    });
+
+    socket.on('retrieveWishes', function (data) {
+        data.Messages.forEach(function (item) {
+            var newMsg = "<div class='col-xs-10 col-xs-offset-1 wishItem'><blockquote><p>" + item.msg + "</p><small>" + item.nick + "," + item.time + "</small></blockquote></div>";
+            $('#wishTable').append(newMsg);
+        });
+
+    });
+      socket.on('update wishes', function (data) {
+        var newMsg = "<div class='col-xs-10 col-xs-offset-1 wishItem'><blockquote><p>" + data.msg + "</p><small>" + data.nick + "," + data.time + "</small></blockquote></div>";
+        $('#wishTable').append(newMsg);
+    });
+
 
     function delayedItems() {
 
@@ -32,100 +59,51 @@ jQuery(function ($) {
                 var today = new Date();
                 var time = [today.getDate(), mS[today.getMonth()], today.getFullYear()];
                 socket.emit('new wish', [$("#name").val(), $("#wishText").val(), time]);
-                $("#wishText").val('');
-                $("#name").val('');
+                $(".form-control").val('').keyup();
                 $("#close-btn").click();
-                $("#name").keyup();
-                $("#wishText").keyup();
 
             });
             $("#close-btn").click(function () {
-                $("#wishText").val('');
-                $("#name").val('');
-                $("#name").keyup();
-                $("#wishText").keyup();
+                $(".form-control").val('');
+                $(".form-control").keyup();
+                
             });
 
             $("#name").keyup(function () {
-                if ($(this).val().trim() != '') {
-                    nameCheck = true;
-                    $(this).closest(".form-group").removeClass("has-error").addClass("has-success");
-                } else {
-                    nameCheck = false;
-                    $(this).closest(".form-group").removeClass("has-success").addClass("has-error");
-                }
-                unlockButton();
+                EmptyCheck($(this));
             });
             $("#wishText").keyup(function () {
-                if ($(this).val().trim() != '') {
-                    wishCheck = true;
-                    $(this).closest(".form-group").removeClass("has-error").addClass("has-success");
-                } else {
-                    wishCheck = false;
-                    $(this).closest(".form-group").removeClass("has-success").addClass("has-error");
-                }
-                unlockButton();
+                EmptyCheck($(this));
             });
         }, 1000);
 
     }
 
-    $("#navbar li").click(function () {
-
-        $(this).siblings().removeClass("active");
-        $(this).addClass("active");
-
-    });
-
-    function unlockButton() {
+function EmptyCheck(item){
+                if (item.val().trim() != '') {
+                    if (item.is("#wishText")){
+                      wishCheck = true;
+                    }else{
+                      nameCheck = true;
+                    }
+                    item.closest(".form-group").removeClass("has-error").addClass("has-success");
+                
+                }else {
+                    if (item.is("#wishText")){
+                        wishCheck = false;
+                    }else{
+                        nameCheck = false;
+                    }
+                    item.closest(".form-group").removeClass("has-success").addClass("has-error");
+                }
         if (nameCheck && wishCheck) {
+
             $("#wishButton").removeAttr("disabled");
         } else {
             $("#wishButton").attr("disabled", true);
         }
-
     }
-
-
-    socket.on('update wishes', function (data) {
-
-        var newMsg = "<div class='col-xs-10 col-xs-offset-1 wishItem'><blockquote><p>" + data.msg + "</p><small>" + data.nick + "," + data.time + "</small></blockquote></div>";
-
-        var newMsg = "<div class='col-xs-10 col-xs-offset-1 wishItem'><blockquote><p>" + data.msg + "</p><small> " + data.nick + ", " + data.time + "</small></blockquote></div>";
-
-        $('#wishTable').append(newMsg);
-    });
-
-    socket.on("retrieveContent", function (data) {
-        $("#content").empty();
-        $("#content").append(data);
-        if (currentTarget == "index") {
-            socket.emit('requestWishes');
-            delayedItems();
-
-        }
-
-
-    });
-
-    socket.on('retrieveWishes', function (data) {
-
-        data.Messages.forEach(function (item) {
-
-            var newMsg = "<div class='col-xs-10 col-xs-offset-1 wishItem'><blockquote><p>" + item.msg + "</p><small>" + item.nick + "," + item.time + "</small></blockquote></div>";
-
-            var newMsg = "<div class='col-xs-10 col-xs-offset-1 wishItem'><blockquote><p>" + item.msg + "</p><small> " + item.nick + ", " + item.time + "</small></blockquote></div>";
-
-            $('#wishTable').append(newMsg);
-        });
-
-    });
-
-
 });
 
 
-
-
-
-
+  
