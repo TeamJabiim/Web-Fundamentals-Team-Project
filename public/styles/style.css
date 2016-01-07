@@ -22,8 +22,8 @@ body {
           body #wrapper header > div {
             padding-bottom: 0; } }
         body #wrapper header > div img {
-          width: 15%;
-          height: 15%; }
+          width: 7%;
+          height: 7%; }
         body #wrapper header > div a {
           text-decoration: none;
           color: #FFFFFF; }
@@ -166,8 +166,7 @@ body {
           box-shadow: 5px 5px 17px gray;
           word-break: break-all;
           text-indent: 10px;
-          background: linear-gradient(limegreen, transparent), linear-gradient(90deg, skyblue, transparent), linear-gradient(-90deg, coral, transparent);
-          background-blend-mode: screen; }
+          background: linear-gradient(limegreen, transparent), linear-gradient(90deg, skyblue, transparent), linear-gradient(-90deg, coral, transparent); }
       body #wrapper #main .joke {
         cursor: pointer;
         width: 300px;
@@ -214,7 +213,7 @@ body {
         margin: 0 auto 50px auto;
         height: 200px;
         width: 200px;
-        perspective: 600;
+        perspective: 600px;
         position: relative; }
         body #wrapper #main .card-container .card {
           height: 100%;
@@ -277,6 +276,10 @@ body {
         margin-top: 10px;
         color: #FFFFFF; }
       body #wrapper footer span {
+        color: #FFFFFF; }
+      body #wrapper footer .team {
+        margin: 0;
+        font-weight: bold;
         color: #FFFFFF; }
       body #wrapper footer a {
         margin-left: 20px; }
